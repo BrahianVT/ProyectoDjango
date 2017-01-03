@@ -1,0 +1,28 @@
+<!--
+
+Pagina para procesar signup.html
+ejemplo sacado de https://github.com/pennersr/django-allauth/tree/master/allauth/templates/account
+solo se cambio los forms por crispy fomrs y se uso bootstrap
+-->
+{% extends "account/base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class = 'col-md-4 col-md-offset-4'>
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit" class="btn btn-default">{% trans "Sign Up" %} &raquo;</button>
+</form>
+</div>
+{% endblock %}

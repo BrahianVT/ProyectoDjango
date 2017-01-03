@@ -1,0 +1,27 @@
+<!--
+
+Pagina para procesar  procesar el formulario
+aqui aparte de usar pa pagina base.html
+ tambien se uso las etiquetas de cripy form para
+ mostrar los forms.
+-->
+{% extends 'base.html'%}
+{% block title %} CONTACT {% endblock %}
+{% load crispy_forms_tags %}
+{%block content %}
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+<h1>{{ title }}</h1>
+
+{% if confirm_message%}
+    <p> {{confirm_message}}</p>
+{%endif%}
+{% if form%}
+    <form method ='POST' action=''> {% csrf_token %}
+        {{ form|crispy }}
+        <input type = 'submit' value='submit form' class = 'btn btn-default'>
+    </form>
+{%endif%}
+    </div>
+</div>
+{%endblock%}

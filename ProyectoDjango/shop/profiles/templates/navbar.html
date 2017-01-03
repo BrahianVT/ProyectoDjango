@@ -1,0 +1,42 @@
+<!--
+Pagina que crea la navegacion y es utilizada en el archivo base.html se uso bootstrap para realizarlo
+-->
+
+<nav role="navigation" class="navbar navbar-default">
+    <div class = "navbar-header">
+        <button type = "button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+            <span class  = "sr-only"> Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="{% url 'home'%}" class="navbar-brand"> Logotipo</a>
+    </div>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav ">
+            <li class="active"><a href="{% url 'home'%}">Home</a></li>
+            <li class="active"><a href="{% url 'about'%}">About</a></li>
+            <li class="active"><a href="{% url 'contact' %}">Contact</a></li>
+            <li class="active"><a href="{% url 'checkout' %}">CheckOut</a></li>
+        </ul>
+         <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Cuenta <span class ="caret"></span></a>
+                <ul class = "dropdown-menu">
+                    {% if request.user.is_authenticated%}
+                        <li><a href="{% url 'account_logout'%}">Logout</a></li>
+                    {%else%}
+                        <li><a href="{% url 'account_login'%}">Login</a></li>
+                        <li><a href="{% url 'account_logout'%}">Logout</a></li>
+                        <li><a href="{% url 'account_signup'%}">SignUp</a></li>
+                    {%endif%}
+
+                    <li role="separator" class="divider"></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>
